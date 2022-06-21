@@ -1,0 +1,9 @@
+[
+  { "ingredient": "Salchichas", "completed": true },
+  { "ingredient": "Jamón", "completed": true },
+  { "ingredient": "Papel higiénico", "completed": false },
+  {
+    "ingredient": "Queso",
+    "completed": false
+  }
+]
