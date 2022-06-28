@@ -2,6 +2,7 @@ import "../styles/App.scss";
 import originalData from "../data/ingredients.json";
 import FilterIngredients from "./FilterIngredients";
 import { useState } from "react";
+import AddIngredient from "./AddIngredient";
 
 function App() {
   const [data, setData] = useState(originalData);
@@ -12,8 +13,8 @@ function App() {
     setSearch(ev.currentTarget.value);
   };
 
-  const handleIngredientNew = (ev) => {
-    setIngredientNew(ev.currentTarget.value);
+  const handleIngredientNew = (data) => {
+    setIngredientNew(data);
   };
 
   const handleClickItem = (ev) => {
@@ -58,17 +59,12 @@ function App() {
         handleSearch={handleSearch}
       />
       <ul>{html}</ul>
-      <form action="" onSubmit={handleForm}>
-        Añadir Ingrediente:
-        <input
-          type="text"
-          name=""
-          id=""
-          value={ingredientNew}
-          onChange={handleIngredientNew}
-        />
-        <button onClick={handleAddIngredient}>BOTÓN</button>
-      </form>
+      <AddIngredient
+        handleForm={handleForm}
+        handleIngredientNew={handleIngredientNew}
+        handleAddIngredient={handleAddIngredient}
+        ingredientNew={ingredientNew}
+      />
     </>
   );
 }
