@@ -17,8 +17,15 @@ function App() {
     setIngredientNew(data);
   };
 
-  const handleClickItem = (ev) => {
-    ev.preventDefault();
+  const handleToggle = (id) => {
+    const modifyToggleList = data.map((dataItem) => {
+      if (dataItem.id === id) {
+        const updatedDataItem = { ...dataItem, completed: !dataItem.completed };
+        return updatedDataItem;
+      }
+      return dataItem;
+    });
+    setData(modifyToggleList);
   };
 
   const handleAddIngredient = (ev) => {
@@ -39,12 +46,12 @@ function App() {
     dataItem.ingredient.toLowerCase().includes(search.toLowerCase())
   );
 
-  const html = filteredData.map((dataItem, index) => {
+  const ingredientList = filteredData.map((dataItem, index) => {
     return (
       <li
-        onClick={handleClickItem}
+        key={dataItem.id}
+        onClick={() => handleToggle(dataItem.id)}
         className={dataItem.completed ? "completed" : null}
-        key={index}
       >
         {dataItem.ingredient}
       </li>
@@ -58,7 +65,7 @@ function App() {
         search={search}
         handleSearch={handleSearch}
       />
-      <ul>{html}</ul>
+      <ul>{ingredientList}</ul>
       <AddIngredient
         handleForm={handleForm}
         handleIngredientNew={handleIngredientNew}
