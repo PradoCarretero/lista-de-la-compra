@@ -18,14 +18,9 @@ function App() {
   };
 
   const handleToggle = (id) => {
-    const modifyToggleList = data.map((dataItem) => {
-      if (dataItem.id === id) {
-        const updatedDataItem = { ...dataItem, completed: !dataItem.completed };
-        return updatedDataItem;
-      }
-      return dataItem;
-    });
-    setData(modifyToggleList);
+    const foundIngredient = data.find((item) => item.id === id);
+    foundIngredient.completed = !foundIngredient.completed;
+    setData([...data]);
   };
 
   const handleAddIngredient = (ev) => {
@@ -46,7 +41,7 @@ function App() {
     dataItem.ingredient.toLowerCase().includes(search.toLowerCase())
   );
 
-  const ingredientList = filteredData.map((dataItem, index) => {
+  const ingredientList = filteredData.map((dataItem) => {
     return (
       <li
         key={dataItem.id}
